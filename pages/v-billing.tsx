@@ -36,6 +36,16 @@ const VBillingPage = () => {
         setExpandedRows([...newExpandedRows]);
     }
 
+    const handleExpandAll = (items: Array<ICustomber>) => {
+        if (expandedRows.length === items.length) {
+            const newExpandedRows: Array<ICustomber> = [];
+            setExpandedRows([...newExpandedRows]);
+        } else {
+            const newExpandedRows = items.map(item => item);
+            setExpandedRows([...newExpandedRows]);
+        }
+    };
+
     const handleExpandSubscriber = (item: ISubscriber) => {
         const newExpandedRows = [...expandedSubscriberRows];
         const indexFound = newExpandedRows.findIndex(newExpanded => newExpanded.id === item.id);
@@ -80,8 +90,10 @@ const VBillingPage = () => {
                 <div className='grid grid-cols-2 gap-2 my-5'>
                     <BillingLeft
                         customers={customers}
+                        expandedRows={expandedRows}
                         isExpanded={isExpanded}
                         handleExpand={handleExpand}
+                        handleExpandAll={handleExpandAll}
                     />
                     <BillingRight
                         subscribers={subscribers}

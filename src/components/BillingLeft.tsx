@@ -5,17 +5,24 @@ import { ICustomber } from '@src/interfaces';
 
 interface Props {
   customers: Array<ICustomber>;
+  expandedRows: ICustomber[];
   isExpanded: (item: ICustomber) => ICustomber | undefined;
   handleExpand: (item: ICustomber) => void;
+  handleExpandAll: (items: Array<ICustomber>) => void;
 }
 
-const BillingLeft: React.FC<Props> = ({ customers, isExpanded, handleExpand }): JSX.Element => {
+const BillingLeft: React.FC<Props> = ({ customers, expandedRows, isExpanded, handleExpand, handleExpandAll }): JSX.Element => {
   return (
     <div className='border rounded-lg h-[66vh] overflow-y-auto overflow-x-hidden scroll-smooth'>
       <div className=''>
         <table className="w-full text-sm text-left text-gray-500">
-          <thead className="text-xs text-gray-700 border-b-2 font-bold">
+          <thead className="text-gray-700 border-b-2 font-bold">
             <tr>
+              <th scope="col" className="p-2">
+                <button onClick={() => handleExpandAll(customers)} className='flex items-center'>
+                  {customers.length === expandedRows.length ? <BsDashSquare className='text-red-600' /> : <BsPlusSquare />}
+                </button>
+              </th>
               <th scope="col" className="p-2 w-1/4">
                 VCODE
               </th>
@@ -35,12 +42,12 @@ const BillingLeft: React.FC<Props> = ({ customers, isExpanded, handleExpand }): 
               <React.Fragment>
                 <tr key={index} className={`border-b ${isExpanded(customer) ? 'bg-slate-100' : 'bg-white'} border-slate-200`}>
                   <td className="p-2">
-                    <div className='flex gap-2'>
-                      <button onClick={() => handleExpand(customer)}>
-                        {isExpanded(customer) ? <BsDashSquare className='text-red-600' /> : <BsPlusSquare />}
-                      </button>
-                      <span>{customer?.vcode}</span>
-                    </div>
+                    <button onClick={() => handleExpand(customer)}>
+                      {isExpanded(customer) ? <BsDashSquare className='text-red-600' /> : <BsPlusSquare />}
+                    </button>
+                  </td>
+                  <td className="p-2">
+                    {customer?.vcode}
                   </td>
                   <td scope="row" className="p-2 font-medium text-gray-900 whitespace-nowrap">
                     {customer?.name}
