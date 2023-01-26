@@ -1,5 +1,9 @@
 import CustomerComponent from "./Customer";
+import BillingLeft from "./BillingLeft";
+import BillingRight from "./BillingRight";
 
 export {
-    CustomerComponent
+    CustomerComponent,
+    BillingLeft,
+    BillingRight 
 }

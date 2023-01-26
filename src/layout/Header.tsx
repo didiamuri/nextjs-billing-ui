@@ -23,7 +23,7 @@ const Header: React.FC<Props> = ({ open, setOpen }) => {
         {
             title: "Billing",
             icon: <MdStickyNote2 className='nav-icon' />,
-            href: '/billing'
+            href: '/v-billing'
         },
         {
             title: "Configuration",
