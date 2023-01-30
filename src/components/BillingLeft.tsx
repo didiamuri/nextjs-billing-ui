@@ -65,7 +65,7 @@ const BillingLeft: React.FC<Props> = ({ customers, expandedRows, isExpanded, han
                 </tr>
                 {(isExpanded(customer) && customers.length > 0) &&
                   <tr>
-                    <td colSpan={4} className='p-2 border'>
+                    <td colSpan={5} className='p-2'>
                       <div className='px-5 py-2'>
                         <div className='grid grid-cols-3 gap-2'>
                           <div className='col-span-1'>
